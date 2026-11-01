@@ -28,7 +28,7 @@ public class AuthController {
 	public ResponseEntity<?> registrar(@RequestBody Usuario user){
 		try {
 			Usuario userNuevo = service.registrar(user);
-			userNuevo.setPassword(null);
+//			userNuevo.setPassword(null);
 			return ResponseEntity.status(HttpStatus.CREATED).body(userNuevo);
 		}catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar Usuario");
@@ -40,7 +40,7 @@ public class AuthController {
 		Optional<Usuario> usuario = service.login(datosLogin.getUsername(), datosLogin.getPassword());
 		if(usuario.isPresent()) {
 			Usuario usuarioAutenticado = usuario.get();
-			usuarioAutenticado.setPassword(null);
+			//usuarioAutenticado.setPassword(null);
 			return ResponseEntity.ok(usuarioAutenticado);
 		}
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario o contraseña incorrectos");
